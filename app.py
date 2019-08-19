@@ -83,14 +83,23 @@ def event_handle(event):
         line_bot_api.reply_message(rtoken, replyObj)
     return ''
 
+replyDic = {}
+replyDic['สวัสดี'] = 'ว่าไงจ้ะ'
+replyDic['ขอโทษ'] = 'ไม่เป็นไร'
+
 def textmessagehandler(msg):
-    msg = translatefunc(msg)
+    msg = translatefunc(msg) #translate
+    try:
+        msg = replyDic[msg]
+    except:
+        msg = 'ไม่เข้าใจครับ'
     return msg
 
 from googletrans import Translator
 translator = Translator()
 
 def translatefunc(msg):
+    #translate from th -> en or en -> th
     lang = translator.detect(msg).lang
     if lang == 'th':
         out = translator.translate(msg,'en').text
