@@ -88,7 +88,7 @@ replyDic['สวัสดี'] = 'ว่าไงจ้ะ'
 replyDic['ขอโทษ'] = 'ไม่เป็นไร'
 
 def textmessagehandler(msg):
-    msg = translatefunc(msg) #translate
+    #msg = translatefunc(msg) #translate
     try:
         msg = replyDic[msg]
     except:
